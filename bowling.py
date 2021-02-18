@@ -36,7 +36,6 @@
 
 # How to Score: The score for the 10th frame is the total current of pins knocked down in the 10th frame.
 
-
 class Scoreboard:
     """
     Contains methods to calculate the final score.
@@ -45,6 +44,10 @@ class Scoreboard:
         self.frames = frames
         self.shots = shots
         self.score = score
+
+    # Method for testing outcomes in unittest
+    def throw(self, pins):
+        self.shots.append(pins)
 
     # Check if strike
     def is_strike(self, shot_index):
@@ -94,7 +97,7 @@ class Frame:
 
 
 ######################
-########## Run #######
+######## Run #########
 ######################
 
 # Variables
@@ -157,7 +160,6 @@ else:
                     i = i + 1
                 else:
                     i = i + 2
-
 
     else:
         scoreboard.frames.append(frame)  
