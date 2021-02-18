@@ -69,12 +69,15 @@ class Scoreboard:
         # Iterate through shots, calculating spares and strikes accordingly
         for i in range(10):
             if self.is_strike(shot_index):
+                # Add values of next two shots + 10
                 self.score += 10 + self.shots[shot_index + 1] + self.shots[shot_index + 2]
                 shot_index += 1
             elif self.is_spare(shot_index):
+                # Add value of next shot + 10
                 self.score += 10 + self.shots[shot_index + 2]
                 shot_index += 2
             else:
+                # Combine shots
                 self.score += self.shots[shot_index] + self.shots[shot_index + 1]
                 shot_index += 2
 
@@ -115,8 +118,14 @@ while len(scoreboard.frames) < 9:
             print('Please enter an amount between 0 and 10.')
         else:
             if len(frame.shots) == 0:
+
+                # If strike
                 if pins == 10:
+
+                    # Add pins to frame
                     frame.shots.append(pins)
+
+                    # Add frame to scoreboard
                     scoreboard.frames.append(frame)
                     frame = Frame(shots = [])
                     print(scoreboard.frames)
@@ -138,11 +147,12 @@ while len(scoreboard.frames) < 9:
             print(scoreboard.frames)
 
 
-
     except ValueError:
         print('Please enter a valid number.')
 
+# Handle final frame
 else:
+    # Counter to handle appropriate number of shots
     i = 0
     while i < 4:
         pins = int(input('Enter the number of pins hit for shot {} '.format(len(frame.shots) + 1) + 'of frame {} '.format(len(scoreboard.frames) + 1)))

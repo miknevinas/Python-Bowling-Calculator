@@ -3,7 +3,7 @@
 ######################
 
 import unittest
-from unittest.mock import patch
+import random
 
 from bowling import Scoreboard, Frame
 
@@ -29,3 +29,15 @@ class Test(unittest.TestCase):
         for pins in [1,9,2,8,3,7,4,6,5,5,6,4,7,3,8,2,9,1,9,1,8]:
             self.scoreboard.throw(pins)
         self.assertEqual(161, self.scoreboard.get_final_score())
+
+
+    def test_zeroes(self):
+        for pins in [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:
+            self.scoreboard.throw(pins)
+        self.assertEqual(0, self.scoreboard.get_final_score())
+
+
+    def test_ones(self):
+        for pins in [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]:
+            self.scoreboard.throw(pins)
+        self.assertEqual(20, self.scoreboard.get_final_score())
